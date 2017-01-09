@@ -3,11 +3,26 @@
     <head>
         <meta charset="utf-8">
         <title>Angular Project</title>
+    </head>
+    <body ng-controller='mainController as vm'>
+        <h1>Saisir</h1>
+        <form ng-submit="vm.create(vm.nom, vm.prenom,vm.email)">
+            <input ng-model="vm.nom" placeholder="Nom">
+            <input ng-model="vm.prenom" placeholder="Prénom">
+            <input ng-model="vm.email" placeholder="E-mail">
+            <input type="submit">
+        </form>
+        <h1>Liste</h1>
+        <form ng-repeat="fiche in vm.fiches" ng-submit="vm.update($index,fiche.nom,fiche.prenom,fiche.email)">
+          <input ng-model="fiche.nom">
+          <input ng-model="fiche.prenom">
+          <input ng-model="fiche.email">
+          <input type="submit" value="Modifier">
+          <button ng-click="vm.delete($index)">Supprimer</button>
+        </form>
+
         <script src="js/libs/angular.min.js"></script>
         <script src="js/controllers/mainController.js"></script>
         <script src="js/app.js"></script>
-    </head>
-    <body ng-controller='mainController'>
-
     </body>
 </html>
